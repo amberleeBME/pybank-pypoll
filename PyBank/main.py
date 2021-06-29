@@ -78,5 +78,6 @@ analysis.append(f"Greatest Increase in profits: {maxMonth} (${inc})\n")
 analysis.append(f"Greatest Decrease in profits: {minMonth} (${dec})\n")
 
 # Write analysis to text file
-with open("PyBank.txt", "w") as file:
+csvpath = os.path.join('Analysis', 'PyBank.txt')
+with open(csvpath, "w") as file:
     file.writelines(analysis)

@@ -77,7 +77,7 @@ for eachDict in pollDicts:
         print(f"{can}:{v}\t({percent}%)")
     else:
         print(f"{can}:\t{v}\t({percent}%)")
-        
+
     lineCandidate = f"\n{can}:\t{v}\t({percent}%)"
     text=text+f"{lineCandidate}"
 
@@ -88,6 +88,6 @@ print("-----------------------------")
 text=text+ "\n"+lineWinner
 
 # Write analysis to text file
-
-with open("PyPoll.txt", "w") as file:
+csvpath = os.path.join('Analysis', 'PyPoll.txt')
+with open(csvpath, "w") as file:
     file.write(f"{text}")
