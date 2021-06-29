@@ -1,14 +1,14 @@
 # Instructions
-# 1. Read CSV file
-# 2. Calculate:
-    # The total number of months included in the dataset
-    # The net total amount of "Profit/Losses" over the entire period
-    # The average of the changes in "Profit/Losses" over the entire period
-    # The greatest increase in profits (date and amount) over the entire period
-    # The greatest decrease in losses (date and amount) over the entire period
- # 3. Print analysis to the terminal
- # 3. Export a text file with the results
-#-----------------------------------------------------------------------------
+    # 1. Read CSV file
+    # 2. Calculate:
+        # The total number of months included in the dataset
+        # The net total amount of "Profit/Losses" over the entire period
+        # The average of the changes in "Profit/Losses" over the entire period
+        # The greatest increase in profits (date and amount) over the entire period
+        # The greatest decrease in losses (date and amount) over the entire period
+    # 3. Print analysis to the terminal
+    # 4. Export a text file with the results
+#----------------------------------------------------------------------------------
 
 # Initialize variables
 monthCount = 0
