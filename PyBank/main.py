@@ -15,6 +15,7 @@ monthCount = 0
 net = 0
 delta = []
 months = []
+analysis = []
 
 #Import os and csv module 
 import os
@@ -68,3 +69,14 @@ print(f"Net Total: ${net}")
 print(f"Average Change: ${avg}")
 print(f"Greatest Increase in profits: {maxMonth} (${inc})")
 print(f"Greatest Decrease in profits: {minMonth} (${dec})")
+
+# Convert analysis to list
+analysis.append(f"Total Months: {monthCount}\n")
+analysis.append(f"Net Total: ${net}\n")
+analysis.append(f"Average Change: ${avg}\n")
+analysis.append(f"Greatest Increase in profits: {maxMonth} (${inc})\n")
+analysis.append(f"Greatest Decrease in profits: {minMonth} (${dec})\n")
+
+# Write analysis to text file
+with open("PyBank.txt", "w") as file:
+    file.writelines(analysis)
