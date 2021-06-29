@@ -29,45 +29,61 @@ with open(csvpath) as csvfile:
     # Initialize variables
     votersCount = 0
     candidates = []
+
     # Read each row of data after the header
     for row in csvreader:
-        # Count voter
+
+        # Count total number of voters
         votersCount = votersCount + 1
 
-        # Append candidate's name to list
+        # Append every vote to "candidates" list
         candidates.append(str(row[2]))
-line1 = f"Total Votes: {votersCount}"
+
 # Sort candidates by name
 candidates.sort()
 
-# Initialize variables
+# Initialize variables to use in for loop
 oldCand = candidates[0]
 candCount = 0
-distinctCands = [oldCand]
-finalCount = []
 rowCount=0
-# pollDict = dict.fromkeys(distinctCands, finalCount)
 pollDicts = []
 
+# Create list of dictionaries for each candidate and their respective vote totals
 for row in candidates:
     rowCount = rowCount + 1
     if row != oldCand or rowCount == votersCount:
-        pollDicts.append({"Candidate":oldCand, "Votes":candCount})
-        distinctCands.append(row)
-        finalCount.append(candCount)
-        candCount = 1
+        num = candidates.count(oldCand)
+        pollDicts.append({"Candidate":oldCand, "Votes":num})
         oldCand = row
-    else:
-        candCount = candCount + 1
-        
+
+# votes function returns vote totals   
 def votes(v):
     return v['Votes']
-
-# pollDict = dict.fromkeys(distinctCands, finalCount)
-# print(line1)
-print(line1)
+# Use votes function to sort dictionaries by vote totals
 pollDicts.sort(reverse = True, key=votes)
-print(pollDicts)
+
+# print(line1)
+lineTotal = f"Total:\t\t{votersCount}"
+
+
+text = f"{lineTotal} \n-----------------------------"
+# for each dictionary, print candidate's name, vote total, and percent of total votes
+for dict in pollDicts:
+    percent = round((dict['Votes']/votersCount)*100)
+    can = dict['Candidate']
+    v = dict['Votes']
+    if len(dict['Candidate'])>7:
+        tab = "\t"
+    else:
+        tab = "\t\t"
+    lineCandidate = f"\n{can}:{tab}{v}\t({percent}%)"
+
+    text=text+f"{lineCandidate}"
+winner=pollDicts[0]['Candidate']
+lineWinner=f"Winner:\t\t{winner}"
+
+text=text+"\n-----------------------------\n"+ lineWinner
 # Write analysis to text file
-# with open("PyPoll.txt", "w") as file:
-#     file.write(candidates[2])
+print(text)
+with open("PyPoll.txt", "w") as file:
+    file.write(f"{text}")
