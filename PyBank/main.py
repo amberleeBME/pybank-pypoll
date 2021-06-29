@@ -10,13 +10,11 @@
  # 3. Export a text file with the results
 #-----------------------------------------------------------------------------
 
-# Define variables
-months = 0
+# Initialize variables
+monthCount = 0
 net = 0
 delta = []
-avg = 0
-inc = 0
-dec = 0
+months = []
 
 #Import os and csv module 
 import os
@@ -37,14 +35,15 @@ with open(csvpath) as csvfile:
     # Read each row of data after the header
     for row in csvreader:
 
-        #Count the number of months
-        months = months + 1 
+        #Count the number of monthCount
+        monthCount = monthCount + 1 
 
         #Calculate net total
         net = net + (int(row[1]))
 
         #Calculate monthly change and append to list
-        if months > 1:
+        if monthCount > 1:
+            months.append(row[0])
             delta.append(int(row[1])-prev)
 
         # Store current month's profit/loss
@@ -55,15 +54,17 @@ avg = round(sum(delta)/len(delta),2)
 
 # Calculate max monthly change
 inc = max(delta)
+maxInd = delta.index(inc)
+maxMonth = months[maxInd]
 
 # Calculate min monthly change
 dec = min(delta)
-
-
+minInd = delta.index(dec)
+minMonth = months[minInd]
 
 # Print analysis to terminal
-print(f"Total Number of months: {months}")
+print(f"Total Months: {monthCount}")
 print(f"Net Total: ${net}")
-print(f"Average change: ${avg}")
-print(f"Greatest increase: ${inc}")
-print(f"Greatest decrease: ${dec}")
+print(f"Average Change: ${avg}")
+print(f"Greatest Increase in profits: {maxMonth} (${inc})")
+print(f"Greatest Decrease in profits: {minMonth} (${dec})")
