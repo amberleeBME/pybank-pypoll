@@ -62,7 +62,7 @@ def votes(v):
 pollDicts.sort(reverse = True, key=votes)
 
 # print(line1)
-lineTotal = f"Total\t{votersCount}"
+lineTotal = f"Total:\t{votersCount}"
 print("-----------------------------")
 text = f"{lineTotal} \n-----------------------------"
 print(text)
@@ -75,10 +75,10 @@ for eachDict in pollDicts:
 
     if len(eachDict['Candidate'])>7:
         print(f"{can}:{v}\t({percent}%)")
+        lineCandidate = f"\n{can}: {v}\t({percent}%)"
     else:
         print(f"{can}:\t{v}\t({percent}%)")
-
-    lineCandidate = f"\n{can}:\t{v}\t({percent}%)"
+        lineCandidate = f"\n{can}:\t{v}\t({percent}%)"
     text=text+f"{lineCandidate}"
 
 winner=pollDicts[0]['Candidate']
