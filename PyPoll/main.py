@@ -9,8 +9,6 @@
     # 3. Export a text file with the results
 # ---------------------------------------------------------
 
-# Variables
-votersCount = 0
 
 # Import os and csv module 
 import os
@@ -28,13 +26,48 @@ with open(csvpath) as csvfile:
     # Read the header row first
     csv_header = next(csvreader)
 
+    # Initialize variables
+    votersCount = 0
+    candidates = []
     # Read each row of data after the header
     for row in csvreader:
+        # Count voter
         votersCount = votersCount + 1
 
+        # Append candidate's name to list
+        candidates.append(str(row[2]))
 line1 = f"Total Votes: {votersCount}"
-print(line1)
+# Sort candidates by name
+candidates.sort()
 
+# Initialize variables
+oldCand = candidates[0]
+candCount = 0
+distinctCands = [oldCand]
+finalCount = []
+rowCount=0
+# pollDict = dict.fromkeys(distinctCands, finalCount)
+pollDicts = []
+
+for row in candidates:
+    rowCount = rowCount + 1
+    if row != oldCand or rowCount == votersCount:
+        pollDicts.append({"Candidate":oldCand, "Votes":candCount})
+        distinctCands.append(row)
+        finalCount.append(candCount)
+        candCount = 1
+        oldCand = row
+    else:
+        candCount = candCount + 1
+        
+def votes(v):
+    return v['Votes']
+
+# pollDict = dict.fromkeys(distinctCands, finalCount)
+# print(line1)
+print(line1)
+pollDicts.sort(reverse = True, key=votes)
+print(pollDicts)
 # Write analysis to text file
 # with open("PyPoll.txt", "w") as file:
-#     file.writelines(analysis)
+#     file.write(candidates[2])
