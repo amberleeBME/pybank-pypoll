@@ -69,16 +69,18 @@ print(text)
 
 # for each dictionary, print candidate's name, vote total, and percent of total votes
 for eachDict in pollDicts:
+
     percent = round((eachDict['Votes']/votersCount)*100)
     can = eachDict['Candidate']
     v = eachDict['Votes']
 
     if len(eachDict['Candidate'])>7:
         print(f"{can}:{v}\t({percent}%)")
-        lineCandidate = f"\n{can}: {v}\t({percent}%)"
+        lineCandidate = f"\n{can}: {v} ({percent}%)"
     else:
         print(f"{can}:\t{v}\t({percent}%)")
-        lineCandidate = f"\n{can}:\t{v}\t({percent}%)"
+        lineCandidate = f"\n{can}:\t{v} ({percent}%)"
+        
     text=text+f"{lineCandidate}"
 
 winner=pollDicts[0]['Candidate']
