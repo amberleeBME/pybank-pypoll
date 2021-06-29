@@ -9,8 +9,7 @@
     # 3. Export a text file with the results
 # ---------------------------------------------------------
 
-
-# Import os and csv module 
+# Import os and csv modules
 import os
 import csv
 
@@ -23,7 +22,7 @@ with open(csvpath) as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    # Read the header row first
+    # Read and store the header row
     csv_header = next(csvreader)
 
     # Initialize variables
@@ -31,13 +30,13 @@ with open(csvpath) as csvfile:
     candidates = []
 
     # Read each row of data after the header
-    for row in csvreader:
+    for eachRow in csvreader:
 
         # Count total number of voters
         votersCount = votersCount + 1
 
         # Append every vote to "candidates" list
-        candidates.append(str(row[2]))
+        candidates.append(str(eachRow[2]))
 
 # Sort candidates by name
 candidates.sort()
@@ -49,12 +48,12 @@ rowCount=0
 pollDicts = []
 
 # Create list of dictionaries for each candidate and their respective vote totals
-for row in candidates:
+for eachVote in candidates:
     rowCount = rowCount + 1
-    if row != oldCand or rowCount == votersCount:
+    if eachVote != oldCand or rowCount == votersCount:
         num = candidates.count(oldCand)
         pollDicts.append({"Candidate":oldCand, "Votes":num})
-        oldCand = row
+        oldCand = eachVote
 
 # votes function returns vote totals   
 def votes(v):
@@ -63,27 +62,32 @@ def votes(v):
 pollDicts.sort(reverse = True, key=votes)
 
 # print(line1)
-lineTotal = f"Total:\t\t{votersCount}"
-
-
+lineTotal = f"Total\t{votersCount}"
+print("-----------------------------")
 text = f"{lineTotal} \n-----------------------------"
-# for each dictionary, print candidate's name, vote total, and percent of total votes
-for dict in pollDicts:
-    percent = round((dict['Votes']/votersCount)*100)
-    can = dict['Candidate']
-    v = dict['Votes']
-    if len(dict['Candidate'])>7:
-        tab = "\t"
-    else:
-        tab = "\t\t"
-    lineCandidate = f"\n{can}:{tab}{v}\t({percent}%)"
-
-    text=text+f"{lineCandidate}"
-winner=pollDicts[0]['Candidate']
-lineWinner=f"Winner:\t\t{winner}"
-
-text=text+"\n-----------------------------\n"+ lineWinner
-# Write analysis to text file
 print(text)
+
+# for each dictionary, print candidate's name, vote total, and percent of total votes
+for eachDict in pollDicts:
+    percent = round((eachDict['Votes']/votersCount)*100)
+    can = eachDict['Candidate']
+    v = eachDict['Votes']
+
+    if len(eachDict['Candidate'])>7:
+        print(f"{can}:{v}\t({percent}%)")
+    else:
+        print(f"{can}:\t{v}\t({percent}%)")
+        
+    lineCandidate = f"\n{can}:\t{v}\t({percent}%)"
+    text=text+f"{lineCandidate}"
+
+winner=pollDicts[0]['Candidate']
+lineWinner=f"-----------------------------\nWinner:\t{winner}"
+print(lineWinner)
+print("-----------------------------")
+text=text+ "\n"+lineWinner
+
+# Write analysis to text file
+
 with open("PyPoll.txt", "w") as file:
     file.write(f"{text}")
