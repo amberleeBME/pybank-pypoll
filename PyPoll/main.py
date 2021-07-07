@@ -13,7 +13,7 @@
 import os
 import csv
 
-# Access "../Resources/election_data.csv"
+# Access "election_data.csv"
 csvpath = os.path.join('Resources', 'election_data.csv')
 
 # Read CSV file
@@ -82,7 +82,7 @@ for eachDict in pollDicts:
         lineCandidate = f"\n{can}:\t{v} ({percent}%)"
         
     text=text+f"{lineCandidate}"
-
+# Find winner
 winner=pollDicts[0]['Candidate']
 lineWinner=f"-----------------------------\nWinner:\t{winner}"
 print(lineWinner)

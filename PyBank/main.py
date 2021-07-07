@@ -30,7 +30,7 @@ with open(csvpath) as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    # Read the header row first
+    # Read/store the header row first
     csv_header = next(csvreader)
 
     # Read each row of data after the header
