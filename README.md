@@ -12,7 +12,7 @@
 
 **Output** analysis to the terminal and a text file
 ***
-> ## **Results**
+> ### **Results**
 > 
 > | Metric | Value |
 > |:-----|:-----|
@@ -37,7 +37,7 @@
 
 **Output** analysis to the terminal and a text file
 ***
-> ## **Results**
+> ### **Results**
 > 
 > |Total Votes:|3,521,001|
 > |:-----|-----:|
