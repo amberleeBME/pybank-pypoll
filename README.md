@@ -11,7 +11,7 @@
 * The greatest decrease in losses (date and amount) over the entire period
 
 **Output** analysis to the terminal and a text file
-***
+
 > ### **Results**
 > 
 > | Metric | Value |
@@ -36,7 +36,7 @@
 * The winner of the election based on popular vote.
 
 **Output** analysis to the terminal and a text file
-***
+
 > ### **Results**
 > 
 > |Total Votes:|3,521,001|
